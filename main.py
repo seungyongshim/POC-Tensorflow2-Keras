@@ -4,13 +4,6 @@ from tensorflow import keras
 
 print(tf.version.VERSION)
 
-(train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
-
-train_labels = train_labels[:1000]
-test_labels = test_labels[:1000]
-
-train_images = train_images[:1000].reshape(-1, 28 * 28) / 255.0
-test_images = test_images[:1000].reshape(-1, 28 * 28) / 255.0
 
 def create_model():
     model = tf.keras.models.Sequential([
@@ -28,3 +21,9 @@ def create_model():
 model = create_model()
 
 model.summary()
+
+checkpoint_path = "training_1"
+checkpoint_dir = os.path.dirname(checkpoint_path)
+
+model.save(checkpoint_path)
+
